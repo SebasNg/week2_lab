@@ -18,6 +18,7 @@ var Escrow = contract(escrow_contract);
 var accounts;
 var account;
 
+
 window.App = {
   start: function () {
     var self = this;
@@ -61,11 +62,11 @@ let createEscrow = async function () {
   var amount = parseInt($("#amount").val());
   var seller = $("#seller").val();
 
-  this.setStatus("Creating escrow contract... (please wait)");
+  console.log(`Creating Escrow of ${amount} with seller: ${seller} and buyer: ${buyer}.`);
 
   let instance = await EscrowFactory.deployed();
   let createdContract = await instance.createEscrow(seller, { from: account, gas: 1000000, value: web3.toWei(amount, 'ether') });
-  
+  console.log('created contract', createdContract);
   // Update UI status here.
 }
 
